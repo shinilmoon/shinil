@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>오늘의 커피 처방전 - 커핑노트</title>
+    <!-- 공용 CSS 파일 연결 -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,14 +24,13 @@
             </div>
 
             <!-- 결과 단계 -->
-            <div id="result-section" style="display: none;">
+            <div id="result-section">
                 <div class="result-card">
                     <span class="result-tag">✨ 맞춤 추천 원두</span>
                     
-                    <!-- 📸 추천 원두 사진 영역 (나중에 실제 이미지로 교체 가능) -->
-                    <div class="result-img-box" style="width: 100%; height: 160px; background: #f0eae1; border-radius: 12px; margin: 15px 0; display: flex; align-items: center; justify-content: center; color: #8c7865; font-size: 13px;">
+                    <!-- 추천 원두 사진 영역 -->
+                    <div class="result-img-box" style="width: 100%; height: 140px; background: #e5dcd3; border-radius: 10px; margin: 15px 0; display: flex; align-items: center; justify-content: center; color: #7d6b5d; font-size: 12px;">
                         <span id="res-img-text">원두 사진 영역</span>
-                        <!-- 실제 사진 넣을 때: <img id="res-img" src="" alt="추천원두" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"> -->
                     </div>
 
                     <h2 class="result-title" id="res-title"></h2>
@@ -46,41 +46,33 @@
     </div>
 
     <script>
-        // ☕ 추천 원두 데이터베이스 (이름, 설명, 이미지 파일명 등 매칭)
         const recommendations = {
             acidic_light: {
                 title: "에티오피아 예가체프 G1 (라이트 로스트)",
-                desc: "화사한 꽃향기와 감귤류의 상큼한 산미가 가득합니다. 머리를 맑게 환기하고 가벼운 바디감을 원하시는 날에 제격입니다.",
-                img: "images/ethiopia.jpg"
+                desc: "화사한 꽃향기와 감귤류의 상큼한 산미가 가득합니다. 머리를 맑게 환기하고 가벼운 바디감을 원하시는 날에 제격입니다."
             },
             acidic_heavy: {
                 title: "케냐 AA (밸런스 로스트)",
-                desc: "풍부한 과일 향 뒤로 묵직한 단맛이 밸런스를 잡아줍니다. 상큼하면서도 깊은 여운을 즐기고 싶을 때 추천합니다.",
-                img: "images/kenya.jpg"
+                desc: "풍부한 과일 향 뒤로 묵직한 단맛이 밸런스를 잡아줍니다. 상큼하면서도 깊은 여운을 즐기고 싶을 때 추천합니다."
             },
             nutty_caffeine: {
                 title: "콜롬비아 수프리모 블렌드",
-                desc: "고소한 견과류와 다크 초콜릿의 풍미가 진하게 어우러집니다. 편안하고 든든하게 카페인을 충전할 수 있습니다.",
-                img: "images/colombia.jpg"
+                desc: "고소한 견과류와 다크 초콜릿의 풍미가 진하게 어우러집니다. 편안하고 든든하게 카페인을 충전할 수 있습니다."
             },
             nutty_decaf: {
                 title: "디카페인 너티 블렌드",
-                desc: "카페인 부담 없이 고소하고 부드러운 초콜릿 향을 그대로 살렸습니다. 늦은 시간에도 편안하게 즐겨보세요.",
-                img: "images/decaf.jpg"
+                desc: "카페인 부담 없이 고소하고 부드러운 초콜릿 향을 그대로 살렸습니다. 늦은 시간에도 편안하게 즐겨보세요."
             },
             sweet_dessert: {
                 title: "바닐라 크림 디저트 블렌드",
-                desc: "달콤하고 크리미한 질감이 입안을 감쌉니다. 기분 좋은 당 충전과 달콤한 여유가 필요한 날 추천합니다.",
-                img: "images/sweet.jpg"
+                desc: "달콤하고 크리미한 질감이 입안을 감쌉니다. 기분 좋은 당 충전과 달콤한 여유가 필요한 날 추천합니다."
             },
             herb_heal: {
                 title: "시그니처 허브 블렌드 티백",
-                desc: "은은한 허브 향이 마음을 차분하게 진정시켜 줍니다. 지친 하루 끝에 따뜻한 힐링을 선사합니다.",
-                img: "images/teabag.jpg"
+                desc: "은은한 허브 향이 마음을 차분하게 진정시켜 줍니다. 지친 하루 끝에 따뜻한 힐링을 선사합니다."
             }
         };
 
-        // 🔀 1단계 및 2단계 분기 구조 설계
         const quizData = {
             step1: {
                 title: "Q1. 오늘 가장 끌리는 전체적인 결은?",
@@ -91,7 +83,6 @@
                     { text: "🍰 달콤함이나 편안한 힐링이 필요한 날", next: "step2_relax" }
                 ]
             },
-            // 1단계 - 산미를 고른 경우 2단계
             step2_acidic: {
                 title: "Q2. 원하시는 바디감의 무게감은요?",
                 desc: "산미와 어우러질 무게를 선택해 주세요.",
@@ -100,7 +91,6 @@
                     { text: "묵직하고 꽉 찬 밸런스 스타일", result: "acidic_heavy" }
                 ]
             },
-            // 1단계 - 고소함을 고른 경우 2단계
             step2_nutty: {
                 title: "Q2. 카페인 섭취 여부가 괜찮으신가요?",
                 desc: "오늘의 수면과 컨디션을 고려해 주세요.",
@@ -109,7 +99,6 @@
                     { text: "늦은 시간이니 부드러운 디카페인으로", result: "nutty_decaf" }
                 ]
             },
-            // 1단계 - 힐링/달콤함을 고른 경우 2단계
             step2_relax: {
                 title: "Q2. 어떤 형태로 즐기고 싶으신가요?",
                 desc: "취향에 맞는 베이스를 골라주세요.",
@@ -120,10 +109,7 @@
             }
         };
 
-        let currentKey = 'step1';
-
         function renderStep(key) {
-            currentKey = key;
             const currentData = quizData[key];
 
             document.getElementById('q-title').innerText = currentData.title;
@@ -137,7 +123,6 @@
                 btn.className = 'choice-btn';
                 btn.innerText = opt.text;
                 
-                // 다음 단계가 있는지, 혹은 결과 바로 직행인지 판단
                 if (opt.next) {
                     btn.onclick = () => renderStep(opt.next);
                 } else if (opt.result) {
@@ -155,10 +140,6 @@
             const res = recommendations[resultKey];
             document.getElementById('res-title').innerText = res.title;
             document.getElementById('res-desc').innerText = res.desc;
-            
-            // 나중에 실제 이미지를 넣을 때 아래 주석을 풀고 사용하시면 됩니다.
-            // document.getElementById('res-img-text').style.display = 'none';
-            // document.getElementById('res-img').src = res.img;
         }
 
         function resetQuiz() {
@@ -167,7 +148,6 @@
             renderStep('step1');
         }
 
-        // 초기 실행
         renderStep('step1');
     </script>
 </body>
