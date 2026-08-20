@@ -99,7 +99,7 @@ header h1 {
 }
 
 /* ==========================================
-   추천 페이지(Quiz) 전용 추가 스타일 (통합)
+   추천 페이지(Quiz) 전용 스타일
    ========================================== */
 .content-area {
     padding: 25px 20px;
@@ -123,6 +123,7 @@ header h1 {
 }
 
 .choice-btn {
+    display: block; /* 버튼이 세로로 꽉 차게 정렬되도록 수정 */
     width: 100%;
     padding: 16px 20px;
     margin-bottom: 12px;
@@ -143,9 +144,9 @@ header h1 {
     border-color: #b5651d;
 }
 
-/* 결과 화면 스타일 */
 #result-section {
     text-align: center;
+    display: none; /* 결과창 초기 숨김 처리 */
 }
 
 .result-card {
