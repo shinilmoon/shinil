@@ -9,13 +9,15 @@
 <body>
 
     <div class="mobile-container">
-        <!-- ☕ 상단 로고 영역 -->
+        <!-- 상단 로고 영역 -->
         <header>
-            <img src="img/logo.png" alt="CUPPING NOTE" class="top-logo">
+            <h1 style="font-size: 22px; color: #4a3525; letter-spacing: 1px;">CUPPING NOTE</h1>
+            <p style="font-size: 11px; color: #8c7865; margin-top: 3px;">ORIGIN • BREWING • EXPERIENCE</p>
         </header>
 
-        <!-- 🌿 에티오피아 산림 및 원두 감성 슬라이더 영역 -->
-        <div class="slider-track" id="sliderTrack">
+        <!-- 🌿 에티오피아 아침 산림 및 원두 감성 슬라이더 (총 4장) -->
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack">
                 <!-- 1. 에티오피아 아침 산림 및 안개 낀 초록 숲 -->
                 <div class="slide"><img src="https://images.unsplash.com/photo-1511497584788-876761142197?auto=format&fit=crop&w=800&q=80" alt="안개 핀 아침 산림"></div>
                 <!-- 2. 안개 낀 이른 아침의 숲속 나무들 -->
@@ -68,7 +70,7 @@
         </footer>
     </div>
 
-    <!-- 🔄 이미지가 자동으로 스르륵 넘어가는 자바스크립트 -->
+    <!-- 슬라이드 자동 전환 스크립트 -->
     <script>
         const track = document.getElementById('sliderTrack');
         const slides = document.querySelectorAll('.slide');
@@ -85,6 +87,5 @@
         // 3초마다 자동으로 슬라이드 이동
         setInterval(moveSlider, 3000);
     </script>
-
 </body>
 </html>
