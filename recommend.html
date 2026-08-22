@@ -12,7 +12,7 @@
         .option-btn:hover { background: #f4ede2; border-color: #b5651d; }
         
         /* 추천 결과 슬라이더 스타일 */
-        .rec-slider { position: relative; width: 100%; height: 200px; border-radius: 8px; overflow: hidden; margin-bottom: 15px; background: #000; }
+        .rec-slider { position: relative; width: 100%; height: 200px; border-radius: 8px; overflow: hidden; margin-bottom: 15px; background: #f4ede2; }
         .rec-track { display: flex; width: 100%; height: 100%; transition: transform 0.5s ease-in-out; }
         .rec-slide { min-width: 100%; height: 100%; }
         .rec-slide img { width: 100%; height: 100%; object-fit: cover; }
@@ -63,7 +63,7 @@
                 </div>
             </div>
 
-            <!-- 결과 출력 영역 (결과가 나올 때만 표시됨) -->
+            <!-- 결과 출력 영역 -->
             <div id="result-container" style="display: none; text-align: center; padding: 10px 0;">
                 <div style="font-size: 35px; margin-bottom: 5px;">🎉</div>
                 <h3 style="font-size: 18px; color: #2c1d11; margin-bottom: 5px;">회원님을 위한 맞춤 추천 원두</h3>
@@ -117,7 +117,7 @@
                 recommendedItemKey = 'colombia';
             }
 
-            // 각 원두별 고유 사진 슬라이드 데이터 매칭
+            // 검증된 실제 파일명들로만 구성된 슬라이더 이미지 목록
             const items = {
                 cottoncandy: { 
                     name: "이상한 나라의 솜사탕 (Special Blend)", 
@@ -134,9 +134,9 @@
                     price: "5,500원", 
                     desc: "화사한 꽃향기와 베리의 달콤함, 홍차 같은 화사한 여운", 
                     imgs: [
-                        "img/KakaoTalk_20260821_165741432_01.jpg", 
                         "img/KakaoTalk_20260821_161745910_06.jpg", 
-                        "img/KakaoTalk_20260820_190705199_11.png"
+                        "img/KakaoTalk_20260820_190705199_11.png", 
+                        "img/KakaoTalk_20260820_190705199.jpg"
                     ] 
                 },
                 guatemala: { 
@@ -144,9 +144,9 @@
                     price: "5,500원", 
                     desc: "다크초콜릿의 깊은 풍미와 카라멜의 달콤함, 균형 잡힌 커피", 
                     imgs: [
-                        "img/KakaoTalk_20260821_165741432.jpg", 
                         "img/KakaoTalk_20260821_161745910_04.jpg", 
-                        "img/KakaoTalk_20260820_190705199_10.png"
+                        "img/KakaoTalk_20260820_190705199_10.png", 
+                        "img/KakaoTalk_20260820_190705199.jpg"
                     ] 
                 },
                 colombia: { 
@@ -154,9 +154,9 @@
                     price: "5,500원", 
                     desc: "브라운슈가의 은은한 단맛과 고소함, 깔끔한 시트러스 여운", 
                     imgs: [
-                        "img/KakaoTalk_20260821_165741432_02.jpg", 
                         "img/KakaoTalk_20260821_161745910_02.jpg", 
-                        "img/KakaoTalk_20260820_190705199_10.png"
+                        "img/KakaoTalk_20260820_190705199_10.png", 
+                        "img/KakaoTalk_20260820_190705199.jpg"
                     ] 
                 }
             };
