@@ -28,8 +28,8 @@
             <div style="width: 50px;"></div>
         </header>
 
-        <div style="padding: 25px 20px;">
-            <div style="margin-bottom: 20px;">
+        <div style="padding: 25px 20px; flex-grow: 1;">
+            <div id="quiz-header" style="margin-bottom: 20px;">
                 <span id="step-indicator" style="font-size: 12px; font-weight: 700; color: #b5651d; letter-spacing: 1px;">STEP 1 / 4</span>
                 <h2 id="step-title" style="font-size: 18px; color: #2c1d11; margin-top: 5px;">원하시는 커피의 산미(상큼한 맛) 취향은 어떠신가요?</h2>
             </div>
@@ -63,7 +63,7 @@
                 </div>
             </div>
 
-            <!-- 결과 출력 영역 (슬라이더 포함) -->
+            <!-- 결과 출력 영역 (결과가 나올 때만 표시됨) -->
             <div id="result-container" style="display: none; text-align: center; padding: 10px 0;">
                 <div style="font-size: 35px; margin-bottom: 5px;">🎉</div>
                 <h3 style="font-size: 18px; color: #2c1d11; margin-bottom: 5px;">회원님을 위한 맞춤 추천 원두</h3>
@@ -104,8 +104,7 @@
 
         function finishQuiz(method) {
             document.getElementById('quiz-form').style.display = 'none';
-            document.getElementById('step-indicator').style.display = 'none';
-            document.getElementById('step-title').style.display = 'none';
+            document.getElementById('quiz-header').style.display = 'none';
             document.getElementById('result-container').style.display = 'block';
 
             if (userAnswers.note === 'cotton') {
@@ -118,36 +117,51 @@
                 recommendedItemKey = 'colombia';
             }
 
+            // 각 원두별 고유 사진 슬라이드 데이터 매칭
             const items = {
                 cottoncandy: { 
                     name: "이상한 나라의 솜사탕 (Special Blend)", 
                     price: "7,000원", 
                     desc: "다채로운 과일 향미와 솜사탕처럼 달콤하게 이어지는 특별한 블렌드", 
-                    imgs: ["img/KakaoTalk_20260821_161745910_08.jpg", "img/KakaoTalk_20260821_161745910.jpg", "img/KakaoTalk_20260820_190705199_06.jpg"] 
+                    imgs: [
+                        "img/KakaoTalk_20260821_161745910_08.jpg", 
+                        "img/KakaoTalk_20260821_161745910.jpg", 
+                        "img/KakaoTalk_20260820_190705199_06.jpg"
+                    ] 
                 },
                 ethiopia: { 
                     name: "에티오피아 (ETHIOPIA)", 
                     price: "5,500원", 
                     desc: "화사한 꽃향기와 베리의 달콤함, 홍차 같은 화사한 여운", 
-                    imgs: ["img/KakaoTalk_20260821_165741432_01.jpg", "img/KakaoTalk_20260821_165741432_02.jpg", "img/KakaoTalk_20260820_190705199_11.png"] 
+                    imgs: [
+                        "img/KakaoTalk_20260821_165741432_01.jpg", 
+                        "img/KakaoTalk_20260821_161745910_06.jpg", 
+                        "img/KakaoTalk_20260820_190705199_11.png"
+                    ] 
                 },
                 guatemala: { 
                     name: "과테말라 안티구아", 
                     price: "5,500원", 
                     desc: "다크초콜릿의 깊은 풍미와 카라멜의 달콤함, 균형 잡힌 커피", 
-                    imgs: ["img/KakaoTalk_20260821_165741432_2.jpg", "img/KakaoTalk_20260821_165741432.jpg", "img/KakaoTalk_20260820_190705199_10.png"] 
+                    imgs: [
+                        "img/KakaoTalk_20260821_165741432.jpg", 
+                        "img/KakaoTalk_20260821_161745910_04.jpg", 
+                        "img/KakaoTalk_20260820_190705199_10.png"
+                    ] 
                 },
                 colombia: { 
                     name: "콜롬비아 (COLOMBIA)", 
                     price: "5,500원", 
                     desc: "브라운슈가의 은은한 단맛과 고소함, 깔끔한 시트러스 여운", 
-                    imgs: ["img/KakaoTalk_20260821_165741432_02_2.jpg", "img/KakaoTalk_20260821_165741432_02.jpg", "img/KakaoTalk_20260820_190705199_10.png"] 
+                    imgs: [
+                        "img/KakaoTalk_20260821_165741432_02.jpg", 
+                        "img/KakaoTalk_20260821_161745910_02.jpg", 
+                        "img/KakaoTalk_20260820_190705199_10.png"
+                    ] 
                 }
             };
 
             const rec = items[recommendedItemKey];
-            
-            // 슬라이드 HTML 구성
             let slidesHtml = rec.imgs.map(img => `<div class="rec-slide"><img src="${img}"></div>`).join('');
 
             document.getElementById('recommend-card').innerHTML = `
@@ -161,7 +175,6 @@
                 <div style="font-size: 14px; font-weight: 700; color: #b5651d; text-align: right;">${rec.price} (상세보기 〉)</div>
             `;
 
-            // 추천 결과 내 슬라이드 자동 전환 스크립트 실행
             let recIndex = 0;
             const track = document.getElementById('recTrack');
             const totalSlides = rec.imgs.length;
