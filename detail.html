@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 상세정보 - 커핑노트</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- 헤더 -->
+        <header style="display: flex; align-items: center; justify-content: space-between; padding: 15px 20px;">
+            <button onclick="history.back()" style="background: none; border: none; font-size: 15px; cursor: pointer; color: #4a3525; font-weight: 650;">〈 뒤로가기</button>
+            <h1 style="font-size: 16px; margin: 0; color: #4a3525;">PRODUCT DETAIL</h1>
+            <div style="width: 50px;"></div>
+        </header>
+
+        <!-- 상세 콘텐츠 -->
+        <div style="padding: 20px;">
+            <div id="product-img-container" style="width: 100%; height: 320px; background: #e5dcd3; border-radius: 12px; overflow: hidden; margin-bottom: 20px;">
+                <!-- 사진 동적 삽입 -->
+            </div>
+            
+            <h2 id="product-name" style="font-size: 20px; color: #2c1d11; margin-bottom: 8px;">상품 이름</h2>
+            <div id="product-price" style="font-size: 18px; font-weight: 700; color: #b5651d; margin-bottom: 15px;">0원</div>
+            <p id="product-desc" style="font-size: 14px; color: #666; line-height: 1.6; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 25px;">설명</p>
+
+            <button class="btn-order" onclick="alert('주문/구매 기능은 준비 중입니다.')" style="margin-bottom: 30px;">구매하기 / 문의하기</button>
+
+            <!-- ==========================================
+               📌 상품 공통 정보 페이지 영역 (모든 상품 공통 노출)
+               ========================================== -->
+            <div style="background: #fdfbf7; border: 1px solid #e5dcd3; border-radius: 12px; padding: 20px;">
+                <h3 style="font-size: 15px; color: #4a3525; margin-bottom: 15px; border-bottom: 1px solid #e5dcd3; padding-bottom: 8px;">📋 상품 공통 안내 및 브루잉 가이드</h3>
+                
+                <div style="font-size: 13px; color: #555; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">📅 **제조일자:** 주문 제작 및 로스팅 당일 표기</p>
+                    <p style="margin-bottom: 10px;">📦 **보관 방법:** 직사광선을 피해 서늘하고 건조한 곳에 보관</p>
+                    <p style="margin-bottom: 15px;">⏳ **권장 기간:** 제조일로부터 6개월 이내 음용 권장</p>
+                    
+                    <div style="background: #fff; padding: 12px; border-radius: 8px; border: 1px dashed #d0c4b4; margin-top: 15px;">
+                        <p style="font-weight: 600; color: #2c1d11; margin-bottom: 5px;">☕ 브루잉 가이드 (Brewing Guide)</p>
+                        <ol style="padding-left: 18px; margin: 0; font-size: 12px; color: #666;">
+                            <li>드립백을 컵 위에 안정적으로 올려주세요.</li>
+                            <li>뜨거운 물을 소량 부어 약 30초간 뜸을 들여주세요.</li>
+                            <li>약 150~180ml의 물을 2~3회 나누어 천천히 부어주세요.</li>
+                            <li>추출이 끝나면 드립백을 제거하고 즐겨주세요.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 Cupping Note. All rights reserved.
+        </footer>
+    </div>
+
+    <script>
+        const products = {
+            platter: {
+                name: "CUPPING NOTE PLATTER",
+                price: "12,000원",
+                desc: "커피 한 잔에 담긴 다양한 향미를 서로 다른 방식으로 경험할 수 있는 커핑노트의 시그니처 플래터 메뉴입니다.",
+                img: "img/KakaoTalk_20260820_190705199_06.jpg"
+            },
+            cottoncandy: {
+                name: "이상한 나라의 솜사탕 (Special Blend)",
+                price: "7,000원",
+                desc: "[Geisha, Ombligon, Aji Bourbon, Castillo, SL28 블렌드] 다채로운 과일의 향미와 자스민의 화사함, 솜사탕처럼 달콤하게 이어지는 특별한 스페셜 블렌드입니다.",
+                img: "img/KakaoTalk_20260821_161745910_08.jpg"
+            },
+            coconutchoco: {
+                name: "코코넛 초코 (Special Blend)",
+                price: "7,000원",
+                desc: "[Brazil Anaerobic, Ethiopia G1, Kenya AA, Guatemala Antigua 블렌드] 코코넛을 연상시키는 고소함과 진한 초콜릿의 달콤함이 부드럽게 어우러지는 하우스 블렌드입니다.",
+                img: "img/KakaoTalk_20260821_161745910.jpg"
+            },
+            colombia: {
+                name: "콜롬비아 (COLOMBIA)",
+                price: "5,500원",
+                desc: "[Tasting Note: Brown Sugar, Nutty, Citrus, Clean Finish] 브라운슈가의 은은한 단맛과 고소함, 산뜻한 시트러스 향 뒤로 깔끔하게 이어지는 여운을 선사합니다.",
+                img: "img/KakaoTalk_20260821_165741432_02.jpg"
+            },
+            ethiopia: {
+                name: "에티오피아 (ETHIOPIA)",
+                price: "5,500원",
+                desc: "[Tasting Note: Floral, Berry, Citrus, Tea-like] 화사한 꽃향기와 베리의 달콤함, 상큼한 시트러스와 홍차 같은 부드러운 여운을 선사합니다.",
+                img: "img/KakaoTalk_20260821_165741432_01.jpg"
+            },
+            guatemala: {
+                name: "과테말라 안티구아 (GUATEMALA ANTIGUA)",
+                price: "5,500원",
+                desc: "[Tasting Note: Dark Chocolate, Caramel, Nutty, Balanced] 진한 다크초콜릿의 깊은 풍미와 카라멜의 달콤함, 고소한 견과류 향이 조화로운 균형 잡힌 커피입니다.",
+                img: "img/KakaoTalk_20260821_165741432.jpg"
+            },
+            classic: {
+                name: "클래식 휘낭시에",
+                price: "4,800원",
+                desc: "버터의 깊은 풍미와 겉바속촉의 고소함을 가득 담은 정통 클래식 휘낭시에 구움과자입니다.",
+                img: "img/KakaoTalk_20260821_161936784_04.jpg"
+            },
+            saltychoco: {
+                name: "솔티초코 휘낭시에",
+                price: "4,800원",
+                desc: "진한 초콜릿 반죽에 은은한 짠맛을 더해 자꾸만 손이 가는 매력적인 단짠 휘낭시에입니다.",
+                img: "img/KakaoTalk_20260821_161936784_02.jpg"
+            },
+            macadamia: {
+                name: "마카다미아 휘낭시에",
+                price: "4,800원",
+                desc: "고소한 마카다미아가 통째로 올라가 씹는 식감과 고급스러운 풍미를 더한 프리미엄 휘낭시에입니다.",
+                img: "img/KakaoTalk_20260821_161936784.jpg"
+            },
+            dripbagset: {
+                name: "드립백 세트 (5 Pieces)",
+                price: "30,000원",
+                desc: "CUPPING NOTE의 스페셜티 커피 향미를 집이나 야외에서도 가장 간편하고 신선하게 즐길 수 있는 5개입 드립백 세트입니다.",
+                img: "img/KakaoTalk_20260820_190705199.jpg"
+            },
+            pouch: {
+                name: "업사이클링 커피 생두 자루 파우치",
+                price: "20,000원",
+                desc: "실제 해외 농장에서 원두를 담아오던 친환경 커피 생두 마대 자루를 세척 및 재활용하여 수제작한 유니크한 사각/복조리 파우치입니다.",
+                img: "img/KakaoTalk_20260821_161634935_06.jpg"
+            }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemId = urlParams.get('item');
+        const item = products[itemId];
+
+        if (item) {
+            document.getElementById('product-name').innerText = item.name;
+            document.getElementById('product-price').innerText = item.price;
+            document.getElementById('product-desc').innerText = item.desc;
+            document.getElementById('product-img-container').innerHTML = `<img src="${item.img}" alt="${item.name}" style="width:100%; height:100%; object-fit:cover;">`;
+        } else {
+            document.getElementById('product-name').innerText = "상품을 찾을 수 없습니다.";
+            document.getElementById('product-desc').innerText = "올바른 경로로 접근해 주세요.";
+        }
+    </script>
+</body>
+</html>
