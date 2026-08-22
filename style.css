@@ -103,9 +103,10 @@ header {
     gap: 12px;
 }
 
-/* 개별 상품 카드 */
+/* 개별 상품 카드 구조 고정 */
 .product-card {
     display: flex;
+    align-items: stretch;
     background: #ffffff;
     border: 1px solid #e5dcd3;
     border-radius: 12px;
@@ -118,18 +119,33 @@ header {
     transform: scale(0.98);
 }
 
+/* 이미지 박스 크기 및 비율 엄격 고정 */
 .product-img-box {
-    flex-shrink: 0;
+    flex: 0 0 110px;
     width: 110px;
     height: 110px;
+    background: #e5dcd3;
+    position: relative;
+    overflow: hidden;
 }
 
+.product-img-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 상품 텍스트 정보 영역 */
 .product-info {
-    padding: 14px;
+    padding: 12px 14px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
+    min-width: 0; /* 텍스트 넘침 방지 */
 }
 
 .product-name {
@@ -137,10 +153,13 @@ header {
     font-weight: 700;
     color: #2c1d11;
     margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-desc {
-    font-size: 12px;
+    font-size: 11px;
     color: #777777;
     line-height: 1.3;
     display: -webkit-box;
@@ -154,6 +173,7 @@ header {
     font-weight: 700;
     color: #b5651d;
     text-align: right;
+    margin-top: 4px;
 }
 
 /* 하단 주문 버튼 영역 */
